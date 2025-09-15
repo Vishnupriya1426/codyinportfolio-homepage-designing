@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codyin Technologies - Portfolio</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  body {
+    background-color: #0d0d0d;
+    color: white;
+  }
+
+  /* Header */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    flex-wrap: wrap;
+  }
+  header .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: rgba(0, 123, 255, 1);
+  }
+
+  /* Navbar centered */
+  nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.3s;
+}
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: rgba(0, 123, 255, 1);
+  transition: width 0.3s ease;
+}
+nav ul li a:hover::after {
+  width: 100%;
+}
+nav ul li a:hover {
+  color: rgba(0, 123, 255, 1);
+}
+
+
+  .call-btn {
+    color: rgba(0, 123, 255, 1);
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 20px;
+  }
+
+  /* Hamburger Icon */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+  }
+  .menu-toggle span {
+    height: 3px;
+    width: 100%;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  /* Hero Section */
+  .hero {
+    height: 100vh;
+    background: url('https://images.unsplash.com/photo-1556761175-4b46a572b786?fit=crop&w=1500&q=80') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Rotating text */
+  .rotating-text {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: rgba(0, 123, 255, 1);
+    display: inline-block;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+  }
+  .shrink {
+    transform: scale(0.85);
+    opacity: 0.3;
+  }
+
+  /* Button with left-to-right fill */
+  .hero-content button {
+    padding: 10px 25px;
+    background: transparent;
+    border: 1px solid rgba(0, 123, 255, 1);
+    color: rgba(0, 123, 255, 1);
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 35px;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.3s ease;
+  }
+  .hero-content button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background: rgba(0, 123, 255, 0.9);
+    transition: width 0.4s ease;
+    z-index: -1;
+  }
+  .hero-content button:hover::before {
+    width: 100%;
+  }
+  .hero-content button:hover {
+    color: #fff;
+  }
+
+  /* Corner services */
+  .corner-services {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    text-align: right;
+    font-size: 0.9em;
+    z-index: 1;
+  }
+  .corner-services a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    margin-top: 5px;
+    transition: color 0.3s;
+  }
+  .corner-services a:hover {
+    color: rgba(0, 123, 255, 1);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    header {
+      flex-wrap: nowrap;
+      padding: 15px 20px;
+    }
+    .menu-toggle {
+      display: flex;
+    }
+    nav {
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      flex-direction: column;
+      align-items: flex-start;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    nav.active {
+      max-height: 300px;
+    }
+    nav ul {
+      flex-direction: column;
+      width: 100%;
+      padding: 15px 20px;
+      gap: 15px;
+    }
+    .call-btn {
+      margin: 15px 20px;
+    }
+    .rotating-text {
+      font-size: 1.8em;
+    }
+    .corner-services {
+      font-size: 0.8em;
+      right: 10px;
+      bottom: 10px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .rotating-text {
+      font-size: 1.4em;
+    }
+    .hero-content button {
+      padding: 8px 16px;
+      font-size: 0.9em;
+    }
+  }
+
+  /* Animate hamburger into X */
+  .menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">CODYIN TECH</div>
+  
+  <div class="menu-toggle" id="menuToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <nav id="navbar">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Features</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <a href="tel:+910000000000" class="call-btn">📞 Call Directly</a>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1 class="rotating-text" id="changingText"></h1>
+    <br>
+    <button>Get Started +</button>
+  </div>
+
+  <div class="corner-services">
+    <a href="#">Live-Industry based Projects</a>
+    <a href="#">Internship training programs</a>
+    <a href="#">Resume & Portfolio Development</a>
+    <a href="#">Career Consultancy</a>
+    <a href="#">IT Services</a>
+  </div>
+</section>
+
+<script>
+  // Rotating Text
+  const sentences = [
+    "Code Your Vision, Shape Your Future.",
+    "Crafting Digital Brilliance Together.",
+    "Turning Concepts Into Code, Dreams Into Reality."
+  ];
+  
+  let index = 0;
+  const textElement = document.getElementById('changingText');
+
+  function changeSentence() {
+    textElement.classList.add("shrink");
+    setTimeout(() => {
+      textElement.textContent = sentences[index];
+      index = (index + 1) % sentences.length;
+      textElement.classList.remove("shrink");
+    }, 600);
+  }
+
+  textElement.textContent = sentences[index];
+  index++;
+  setInterval(changeSentence, 3000);
+
+  // Mobile Menu Toggle
+  const menuToggle = document.getElementById("menuToggle");
+  const navbar = document.getElementById("navbar");
+
+  menuToggle.addEventListener("click", () => {
+    menuToggle.classList.toggle("active");
+    navbar.classList.toggle("active");
+  });
+</script>
+</body>
+</html>
